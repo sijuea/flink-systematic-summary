@@ -140,5 +140,5 @@
 ## 致谢
 如果觉得有用，一杯咖啡足矣☕，感谢
 <p align="left">
-  <img src="[https://raw.githubusercontent.com/your-username/your-repo/main/images/wechat.png](https://github.com/sijuea/flink-systematic-summary/blob/main/images/wechat.jpg)" width="200"/>
+  <img src="https://github.com/sijuea/flink-systematic-summary/blob/main/images/wechat.jpg" width="200"/>
 </p>
