@@ -1,5 +1,5 @@
 # flink-systematic-summary
-#Flink系统性总结
+# Flink系统性总结
 
 ## 目录如下：
 - **一、模块学习**
@@ -139,5 +139,6 @@
 如果各位看客有自己的总结或见解，可以提交修改到v1.1
 ## 致谢
 如果觉得有用，一杯咖啡足矣☕，感谢
-![赞赏码.jpg](attachment:e0a5360f-6c0f-4b61-8711-15caec101f64:赞赏码.jpg)
-
+<p align="left">
+  <img src="[https://raw.githubusercontent.com/your-username/your-repo/main/images/wechat.png](https://github.com/sijuea/flink-systematic-summary/blob/main/images/wechat.jpg)" width="200"/>
+</p>
