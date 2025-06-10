@@ -1,35 +1,35 @@
 
 
 
-###  一、概念
+###  1.概念
 
-1. **Table API**：以 Java/Scala 编程语言编写的 DSL（领域特定语言），具备 SQL 类似的表达能力，支持链式操作。
-2. **SQL API**：用户可通过标准 SQL 查询语言对动态流或静态表执行操作，类似传统数据库系统。
-3. **TableEnvironment**：统一的入口，用于注册表、执行 SQL、控制上下文行为（如流/批模式）。
-4. **动态表（Dynamic Table）模型**：将流数据建模为持续更新的表，实现流式数据的表语义。
-5. **统一语义**：Flink 的 Table & SQL 模块实现了批流一体，在语义、API 和优化层面统一处理逻辑。
+[1]. **Table API**：以 Java/Scala 编程语言编写的 DSL（领域特定语言），具备 SQL 类似的表达能力，支持链式操作。
+[2]. **SQL API**：用户可通过标准 SQL 查询语言对动态流或静态表执行操作，类似传统数据库系统。
+[3]. **TableEnvironment**：统一的入口，用于注册表、执行 SQL、控制上下文行为（如流/批模式）。
+[4]. **动态表（Dynamic Table）模型**：将流数据建模为持续更新的表，实现流式数据的表语义。
+[5]. **统一语义**：Flink 的 Table & SQL 模块实现了批流一体，在语义、API 和优化层面统一处理逻辑。
 
 ---
 
-### 二、原理
+### 2.原理
 
-1. **查询解析（Parsing）**：
+[1]. **查询解析（Parsing）**：
 
    * SQL 会被 Flink 内部的 Apache Calcite 解析为逻辑查询计划（Logical Plan）。
-2. **验证与转换（Validation & Conversion）**：
+[2]. **验证与转换（Validation & Conversion）**：
 
    * 系统会验证字段、函数等是否合法，并将逻辑计划转换为 Flink 自身的中间表示。
-3. **查询优化（Query Optimization）**：
+[3]. **查询优化（Query Optimization）**：
 
    * 使用基于规则的优化器进行查询重写，包括谓词下推、子查询合并、连接重排序等。
-4. **物理计划生成（Physical Plan）**：
+[4]. **物理计划生成（Physical Plan）**：
 
    * 逻辑计划会被转换为物理计划，包含并行度、数据分区、执行算子等实际执行策略。
-5. **任务生成与执行（Job Generation & Execution）**：
+[5]. **任务生成与执行（Job Generation & Execution）**：
 
    * 最终生成的物理计划会被翻译成 Flink 的 DataStream 或 Transformation DAG 提交执行。
 
-**表与流的桥梁 - 动态表：**
+[P]**表与流的桥梁 - 动态表：**
 
 Flink 在内部使用** 动态表（Dynamic Table）**模型，将流抽象为持续变化的表格，支持 INSERT/UPDATE/DELETE 三种变更事件，与传统关系型数据库类似。
 类型如下：
@@ -44,7 +44,7 @@ Flink 在内部使用** 动态表（Dynamic Table）**模型，将流抽象为�
 ---
 
 ### 3.实现
-**1. 环境准备**
+**[1]. 环境准备**
 
 ```java
 // Java 示例
@@ -55,7 +55,7 @@ TableEnvironment tableEnv = TableEnvironment.create(settings);
 
 ---
 
-**2. 数据源定义**
+**[2]. 数据源定义**
 
 ```java
 // Kafka 源表，使用事件时间和水位线
@@ -75,7 +75,7 @@ CREATE TABLE user_events (
 
 ---
 
- **3. 使用 Table API 执行窗口聚合**
+ **[3].使用 Table API 执行窗口聚合**
 
 ```java
 Table result = tableEnv.from("clicks") //表名
@@ -90,7 +90,7 @@ Table result = tableEnv.from("clicks") //表名
 
 ```
 ---
-**4.使用 SQL 执行窗口查询**
+**[4]. 使用 SQL 执行窗口查询**
 ```java
 //滚动窗口
 SELECT
@@ -111,7 +111,7 @@ GROUP BY user_id, HOP(event_time, INTERVAL '5' MINUTE, INTERVAL '15' MINUTE);
 
 ```
 
-**5. 将结果输出到 Sink**
+**[5]. 将结果输出到 Sink**
 ```java
 //方式1
 tableEnv.executeSql("""
@@ -141,7 +141,7 @@ FROM result_table;
 
 ```
 
-**6.CDC实时同步实现**
+**[6]. CDC实时同步实现**
 ```SQL
 //以mysql为例
 CREATE TABLE mysql_binlog (
@@ -164,25 +164,25 @@ CREATE TABLE mysql_binlog (
 ```
 ---
 
-## 四、场景
+### 4.场景
 
 
-1. **实时指标分析**：
+[1]. **实时指标分析**：
 
    * 业务场景如 PV/UV、用户活跃度、订单统计等，依赖低延迟数据聚合。
-2. **ETL 管道构建**：
+[2]. **ETL 管道构建**：
 
    * 通过 SQL 对接 Kafka、HBase、JDBC 等来源，对数据进行清洗、转换、写入目标存储。
-3. **数据湖查询和管理**：
+[3]. **数据湖查询和管理**：
 
    * 集成 Apache Iceberg、DeltaLake、Hudi，实现数据湖上的增量处理和批流统一。
-4. **多源 JOIN 分析**：
+[4]. **多源 JOIN 分析**：
 
    * 利用 Temporal Table Join 实现实时与维度表的关联，例如用户画像分析。
 
 ---
 
-## 五、常见问题
+### 5.常见问题
 - **Q：数据类型不匹配**：
     
     >  A：尤其是 JSON 数据源自动推断类型时，建议显式定义 schema。
