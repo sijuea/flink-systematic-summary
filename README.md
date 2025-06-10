@@ -8,7 +8,7 @@
     - ### [状态存储](https://github.com/sijuea/flink-systematic-summary/blob/main/%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/%E7%8A%B6%E6%80%81%E5%AD%98%E5%82%A8.md)
     - ### [容错机制](https://github.com/sijuea/flink-systematic-summary/blob/main/%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6.md)
     - ### [执行模型](https://github.com/sijuea/flink-systematic-summary/blob/main/%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%BC%8F.md)
-    - ### 内存管理
+    - ### [内存管理](https://github.com/sijuea/flink-systematic-summary/blob/main/%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md)
 - ## 二、项目应用
     - ### 开发环境
     - ### DataStream API
