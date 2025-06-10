@@ -31,7 +31,15 @@
 
 **表与流的桥梁 - 动态表：**
 
-Flink 在内部使用**动态表（Dynamic Table）**模型，将流抽象为持续变化的表格，支持 INSERT/UPDATE/DELETE 三种变更事件，与传统关系型数据库类似。
+Flink 在内部使用** 动态表（Dynamic Table）**模型，将流抽象为持续变化的表格，支持 INSERT/UPDATE/DELETE 三种变更事件，与传统关系型数据库类似。
+类型如下：
+| 类型                         | 描述                                                     | 典型用途                |
+| -------------------------- | ------------------------------------------------------ | ------------------- |
+| **Append-only（仅追加表）**      | 只包含 INSERT 操作，不存在 UPDATE 或 DELETE                      | 日志、事件流，如点击流分析       |
+| **Upsert（更新插入表）**          | 包含 INSERT 和 UPDATE（以主键为基础）                             | 有主键的状态更新，如统计计数      |
+| **Retract（撤回表）**           | 包含 INSERT、UPDATE、DELETE 三种操作，需要携带之前数据的撤回               | 没有主键但仍有更新/删除需求的复杂聚合 |
+| **Changelog Table（变更日志表）** | 泛指包含各种变更（INSERT、UPDATE\_BEFORE、UPDATE\_AFTER、DELETE）的表 | 适用于通用场景             |
+
 
 ---
 
