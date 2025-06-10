@@ -12,7 +12,7 @@
     - ### [内存管理](https://github.com/sijuea/flink-systematic-summary/blob/main/%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md)
 - ## 二、项目应用
     - ### [开发环境](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.md)
-    - ### DataStream API
+    - ### [DataStream API](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8/DataStream%20API.md)
     - ### Table API & SQL
     - ### 连接器生态
     - ### 扩展库应用
