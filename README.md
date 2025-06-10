@@ -23,9 +23,9 @@
     - ### 监控诊断
     - ### 升级扩展
 ## 贡献指南
-如果各位看客有自己的总结或见解，可以提交修改到v1.1
+若自己的总结或见解，可以提交到v1.1
 ## 致谢
-如果觉得有用，一杯咖啡足矣☕，感谢
+各位developer如果觉得有用，一杯咖啡足矣☕，感谢
 <p align="left">
   <img src="https://github.com/sijuea/flink-systematic-summary/blob/main/images/wechat.jpg" width="200"/>
 </p>
