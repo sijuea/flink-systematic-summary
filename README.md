@@ -17,8 +17,8 @@
     - ### [扩展库应用](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8/%E6%89%A9%E5%B1%95%E5%BA%93%E5%BA%94%E7%94%A8.md)
 - ## 三、部署运维
     - ### [集群架构](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84.md)  
-    - ### 集群部署
-    - ### 配置管理
+    - ### [集群部署](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2.md)
+    - ### [FlinkJob提交](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/Flink%20Job%E6%8F%90%E4%BA%A4.md)
     - ### 状态运维
     - ### 监控诊断
     - ### 升级扩展
