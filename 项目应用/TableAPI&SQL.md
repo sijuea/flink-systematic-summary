@@ -13,6 +13,15 @@
   
   **[5]. 统一语义**：Flink 的 Table & SQL 模块实现了批流一体，在语义、API 和优化层面统一处理逻辑。
 
+  **[6]. 自定义函数：**
+  
+   * **UDF（User-Defined Function）**：标量函数，实现一进一出，扩展内置函数库。
+    
+   * **UDTF（User-Defined Table Function）**：表函数，一进多出，用于生成多行数据。
+    
+   * **UDAF（User-Defined Aggregate Function）**：聚合函数，定义聚合计算逻辑。
+    
+
 ---
 
 ### 2.原理
@@ -167,6 +176,14 @@ CREATE TABLE mysql_binlog (
 );
 
 ```
+**[7]. 自定义函数实现：**
+
+* 继承对应抽象类或接口：`ScalarFunction`（UDF）、`TableFunction`（UDTF）、`AggregateFunction` 或 `TableAggregateFunction`（UDAF）。
+
+* 由 Flink SQL 编译器将函数解析成算子，运行时执行函数调用。
+
+* 函数参数和返回类型通过类型推断和 `TypeInformation`/`DataType` 支持。
+
 ---
 
 ### 4.场景
