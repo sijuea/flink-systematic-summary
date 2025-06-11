@@ -55,6 +55,28 @@ patternStream.select(patternMatches -> {
 });
 
 ```
+**常用方法**
+
+| 方法 | 说明 | 示例或备注 |
+| --- | --- | --- |
+| `begin()` | 定义第一个事件模式 | `Pattern.begin("start")` |
+| `next()` | 定义紧接着的事件（严格顺序） | `pattern.next("middle")` |
+| `followedBy()` | 定义后续事件（非严格顺序） | `pattern.followedBy("middle")` |
+| `within(Time)` | 限定事件序列的最大时间范围 | `pattern.within(Time.minutes(5))` |
+| `where()` | 添加过滤条件（布尔表达式） | `.where(e -> e.getType().equals("click"))` |
+| `or()` | 为同一个模式添加额外条件 | `.where(...).or(...)` |
+| `times(int n)` | 指定事件必须出现固定次数 | `.times(3)`：恰好 3 次 |
+| `optional()` | 指定某事件为可选事件 | `.optional()` |
+| `oneOrMore()` | 匹配一个或多个重复事件 | `.oneOrMore()` |
+
+**PatternStream 处理方法**
+
+| 方法 | 说明 |
+| --- | --- |
+| `select(PatternSelectFunction)` | 对完整模式进行处理，输出结果 |
+| `flatSelect(PatternFlatSelectFunction)` | 输出 0~多条结果（灵活） |
+| `process(PatternProcessFunction)` | 更强大的低级接口，支持定时器、侧输出等 |
+| `injected()` | 结合广播状态动态注入模式（高级用法） |
 ---
 
 ### 4.场景
