@@ -19,9 +19,7 @@
     - ### [集群架构](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84.md)  
     - ### [集群部署](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2.md)
     - ### [FlinkJob提交](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/Flink%20Job%E6%8F%90%E4%BA%A4.md)
-    - ### 状态运维
-    - ### 监控诊断
-    - ### 升级扩展
+    - ### [监控诊断](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E8%AF%8A%E6%96%AD.md)
 ## 贡献指南
 若自己的总结或见解，可以提交到v1.1
 ## 致谢
