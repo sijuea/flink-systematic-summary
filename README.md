@@ -15,7 +15,7 @@
     - ### [DataStream API](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8/DataStream%20API.md)
     - ### [Table API & SQL](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8/TableAPI%26SQL.md)
     - ### [连接器生态](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8/%E8%BF%9E%E6%8E%A5%E5%99%A8%E7%94%9F%E6%80%81.md)
-    - ### 扩展库应用
+    - ### [扩展库应用](https://github.com/sijuea/flink-systematic-summary/blob/main/%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8/%E6%89%A9%E5%B1%95%E5%BA%93%E5%BA%94%E7%94%A8.md)
 - ## 三、部署运维
     - ### 集群部署
     - ### 配置管理
