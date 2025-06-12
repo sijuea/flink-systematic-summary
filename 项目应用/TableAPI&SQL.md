@@ -211,7 +211,7 @@ CREATE TABLE mysql_binlog (
                          AND u.event_time + INTERVAL '5' SECOND;
 
     ```
-**Temporal  Join**(区间 join)：
+**Temporal  Join**(维度表 join)：
 
 * 语义：将流数据与“历史快照”做时间关联，流表侧的每一条记录都会按其事件时间到维度表做一次时点查询。
 
