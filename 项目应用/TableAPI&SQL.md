@@ -286,6 +286,39 @@ CREATE TABLE mysql_binlog (
 
 * 函数参数和返回类型通过类型推断和 `TypeInformation`/`DataType` 支持。
 
+**[9]. 窗口 Top案例**
+  ```
+   -- 1. 在窗口内按 product_id 聚合点击次数
+   CREATE VIEW product_counts AS
+   SELECT
+     product_id,
+     TUMBLE_START(ts, INTERVAL '1' HOUR) AS win_start,
+     TUMBLE_END(ts,   INTERVAL '1' HOUR) AS win_end,
+     COUNT(1)         AS cnt
+   FROM clicks
+   GROUP BY
+     TUMBLE(ts, INTERVAL '1' HOUR),
+     product_id;
+   
+   -- 2. 对聚合结果做 Top-N 排名，保留每个窗口前 3 名
+   SELECT
+     win_start,
+     win_end,
+     product_id,
+     cnt
+   FROM (
+     SELECT
+       *,
+       ROW_NUMBER() OVER (
+         PARTITION BY win_start, win_end
+         ORDER BY cnt DESC
+       ) AS rn
+     FROM product_counts
+   ) t
+   WHERE rn <= 3;
+
+  ```
+
 ---
 
 ### 4.场景
