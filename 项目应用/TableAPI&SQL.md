@@ -176,7 +176,109 @@ CREATE TABLE mysql_binlog (
 );
 
 ```
-**[7]. 自定义函数实现：**
+**[7]. SQL Join**
+
+**Regular Join**(常规join)：支持 left join、 right join 、 inner join 、cross join
+
+* **语义：** join时，左表和右表都会被缓存（保留状态），等待可能的匹配，所以这种长久保留的状态可能导致状态无限增长，应配置TTL来回收State
+
+* **场景：** 当数据表规模有限、流量可控，或两个表均为有界表
+* **案例**
+  ```SQL
+   SELECT o.order_id, p.name, p.price
+   FROM Orders AS o
+   INNER JOIN Product AS p
+    ON o.product_id = p.id;
+   //orders 表和product 表的状态保存$ttl时长
+  ```
+
+**Interval Join**(区间 join)：
+
+* **语义：** 仅支持 等值 join + 时间范围限制，即right.time  between  left.time-low and left.time+up
+
+* **场景：** 顶点与支付，点击与曝光等
+
+* **案例**
+    ```SQL
+      SELECT
+   u.user_id,
+   u.event_time    AS click_time,
+   p.event_time    AS exposure_time
+   FROM click_stream AS u
+   INNER JOIN exposure_stream AS p
+     ON u.user_id = p.user_id
+    AND p.event_time BETWEEN u.event_time - INTERVAL '5' SECOND
+                         AND u.event_time + INTERVAL '5' SECOND;
+
+    ```
+**Temporal  Join**(区间 join)：
+
+* 语义：将流数据与“历史快照”做时间关联，流表侧的每一条记录都会按其事件时间到维度表做一次时点查询。
+
+* 关键字：FOR SYSTEM_TIME AS OF
+
+* 场景：将动态费率规则应用到交易事件。
+
+* 案例：
+   ```SQL
+   -- 维度表需定义为带有版本时间属性的表
+  CREATE TABLE user_dim (
+    user_id    STRING,
+    name       STRING,
+    gender     STRING,
+    ts         TIMESTAMP(3),
+    PRIMARY KEY (user_id) NOT ENFORCED
+  ) WITH (
+    'connector' = 'jdbc',
+    …,
+    'lookup.cache.max-rows' = '5000',
+    'lookup.cache.ttl' = '10min'
+  );
+  
+  -- 订单流关联到维表
+  SELECT
+    o.order_id,
+    o.user_id,
+    d.name,
+    d.gender,
+    o.ts
+  FROM orders AS o
+  LEFT JOIN user_dim FOR SYSTEM_TIME AS OF o.ts AS d
+    ON o.user_id = d.user_id;
+  
+   ```
+**Lookup Join（异步维表查询）**  
+
+* **语义：** 于异步 I/O，从外部系统（例如 MySQL、Redis、HBase）按需拉取最新维度数据。
+* **场景：** 实时点击流中查用户等级
+* **案例：**
+  
+  ```SQL
+   CREATE TABLE rate_rule (
+    rule_id    STRING,
+    factor     DOUBLE,
+    ts         TIMESTAMP(3),
+    PRIMARY KEY (rule_id) NOT ENFORCED
+  ) WITH (
+    'connector' = 'jdbc',
+    'url' = 'jdbc:mysql://.../db',
+    'table-name' = 'rule_table',
+    'lookup.cache.max-rows' = '10000',
+    'lookup.cache.ttl' = '5min'
+  );
+  
+  SELECT
+    t.tx_id,
+    t.amount,
+    r.factor,
+    t.amount * r.factor AS fee
+  FROM tx_stream AS t
+  LEFT JOIN rate_rule FOR SYSTEM_TIME AS OF t.ts AS r
+    ON t.rule_id = r.rule_id;
+
+  ```
+
+**[8]. 自定义函数实现：**
 
 * 继承对应抽象类或接口：`ScalarFunction`（UDF）、`TableFunction`（UDTF）、`AggregateFunction` 或 `TableAggregateFunction`（UDAF）。
 
